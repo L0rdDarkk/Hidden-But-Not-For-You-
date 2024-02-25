@@ -57,7 +57,7 @@ def dirsearch(target_url, recursive=False):
             print(f"[?] Possible directory: {path}")
 
 def main():
-    print(logo)  # Print logo
+    print(logo)  
     print(author)
     parser = argparse.ArgumentParser(description="Simple directory scanner")
     parser.add_argument("-u", "--url", help="Target URL", required=True)
