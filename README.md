@@ -2,7 +2,7 @@
 
 
 This Python script is a simple directory scanner designed to discover common directories on a target website. It utilizes a list of common directory paths and recursively searches through internal links to find additional directories.
-Versioni 0.0.1 beta.
+Version 0.0.1 beta.
 ## How It Works
 
 1. The script starts by defining a set of common directory paths (`COMMON_PATHS`) typically found on websites, such as admin panels, login pages, and resource directories.
