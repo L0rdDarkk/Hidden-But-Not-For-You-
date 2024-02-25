@@ -3,6 +3,11 @@
 
 This Python script is a simple directory scanner designed to discover common directories on a target website. It utilizes a list of common directory paths and recursively searches through internal links to find additional directories.
 Version 0.0.1 beta.
+
+
+![Hidden But Not For You ](https://raw.githubusercontent.com/L0rdDarkk/Hidden-But-Not-For-You-/main/hidden.png)
+
+
 ## How It Works
 
 1. The script starts by defining a set of common directory paths (`COMMON_PATHS`) typically found on websites, such as admin panels, login pages, and resource directories.
