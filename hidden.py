@@ -34,9 +34,14 @@ def get_internal_links(url, html_content):
             internal_links.add(absolute_link)
     return internal_links
 
-def dirsearch(target_url, recursive=False):
+def dirsearch(target_url, recursive=False, wordlist=None):
     discovered_directories = set()
     paths_to_scan = generate_paths(target_url)
+    
+    if wordlist:
+        with open(wordlist, 'r') as f:
+            custom_paths = f.read().splitlines()
+            paths_to_scan.update(custom_paths)
 
     while paths_to_scan:
         path = paths_to_scan.pop()
@@ -62,12 +67,14 @@ def main():
     parser = argparse.ArgumentParser(description="Simple directory scanner")
     parser.add_argument("-u", "--url", help="Target URL", required=True)
     parser.add_argument("-r", "--recursive", help="Enable recursive directory scanning", action="store_true")
+    parser.add_argument("-w", "--wordlist", help="Path to custom wordlist")
     args = parser.parse_args()
 
     target_url = args.url
     recursive = args.recursive
+    wordlist = args.wordlist
 
-    dirsearch(target_url, recursive)
+    dirsearch(target_url, recursive, wordlist)
 
 if __name__ == "__main__":
     main()
