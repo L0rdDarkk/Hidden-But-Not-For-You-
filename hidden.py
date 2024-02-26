@@ -39,9 +39,16 @@ def dirsearch(target_url, recursive=False, wordlist=None):
     paths_to_scan = generate_paths(target_url)
     
     if wordlist:
-        with open(wordlist, 'r') as f:
-            custom_paths = f.read().splitlines()
-            paths_to_scan.update(custom_paths)
+    with open(wordlist, 'rb') as f:
+        custom_paths = []
+        for line in f:
+            try:
+                decoded_line = line.decode('utf-8').strip()
+                custom_paths.append(decoded_line)
+            except UnicodeDecodeError:
+                print("Skipping line due to decoding error:", line)
+                continue
+        paths_to_scan.update(custom_paths)
 
     while paths_to_scan:
         path = paths_to_scan.pop()
