@@ -11,10 +11,10 @@ db   db d888888b d8888b. d8888b. d88888b d8b   db   d8888b. db    db d888888b   
 88   88   .88.   88  .8D 88  .8D 88.     88  V888   88   8D 88b  d88    88      88  V888 `8b  d8'    88      88      `8b  d8' 88 `88.      88    `8b  d8' 88b  d88 
 YP   YP Y888888P Y8888D' Y8888D' Y88888P VP   V8P   Y8888P' ~Y8888P'    YP      VP   V8P  `Y88P'     YP      YP       `Y88P'  88   YD      YP     `Y88P'  ~Y8888P 
 """
-author=""" By L0rdDarkk"""
+author = """ By L0rdDarkk """
 COMMON_PATHS = [
-    "admin", "login", "wp-admin", "wp-login", "administrator", 
-    "phpmyadmin", "admin.php", "login.php", "index.php", 
+    "admin", "login", "wp-admin", "wp-login", "administrator",
+    "phpmyadmin", "admin.php", "login.php", "index.php",
     "backup", "uploads", "images", "css", "js", "fonts"
 ]
 
@@ -37,18 +37,18 @@ def get_internal_links(url, html_content):
 def dirsearch(target_url, recursive=False, wordlist=None):
     discovered_directories = set()
     paths_to_scan = generate_paths(target_url)
-    
+
     if wordlist:
         with open(wordlist, 'rb') as f:
-        custom_paths = []
-        for line in f:
-            try:
-                decoded_line = line.decode('utf-8').strip()
-                custom_paths.append(decoded_line)
-            except UnicodeDecodeError:
-                print("Skipping line due to decoding error:", line)
-                continue
-        paths_to_scan.update(custom_paths)
+            custom_paths = []
+            for line in f:
+                try:
+                    decoded_line = line.decode('utf-8').strip()
+                    custom_paths.append(decoded_line)
+                except UnicodeDecodeError:
+                    print("Skipping line due to decoding error:", line)
+                    continue
+            paths_to_scan.update(custom_paths)
 
     while paths_to_scan:
         path = paths_to_scan.pop()
@@ -69,7 +69,7 @@ def dirsearch(target_url, recursive=False, wordlist=None):
             print(f"[?] Possible directory: {path}")
 
 def main():
-    print(logo)  
+    print(logo)
     print(author)
     parser = argparse.ArgumentParser(description="Simple directory scanner")
     parser.add_argument("-u", "--url", help="Target URL", required=True)
