@@ -39,7 +39,7 @@ def dirsearch(target_url, recursive=False, wordlist=None):
     paths_to_scan = generate_paths(target_url)
     
     if wordlist:
-    with open(wordlist, 'rb') as f:
+        with open(wordlist, 'rb') as f:
         custom_paths = []
         for line in f:
             try:
