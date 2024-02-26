@@ -52,6 +52,10 @@ def dirsearch(target_url, recursive=False, wordlist=None):
 
     while paths_to_scan:
         path = paths_to_scan.pop()
+        
+        if not path:
+            continue
+
         if path in discovered_directories:
             continue
 
