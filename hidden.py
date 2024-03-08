@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, quote
 from colorama import Fore, Style
 from tabulate import tabulate
+import sys
+import re
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -47,6 +49,7 @@ def find(target_url, recursive=False, wordlist=None):
     success_messages = []
 
     paths_to_scan = generate_paths(target_url)
+    print("We are running...")
 
     if wordlist:
         with open(wordlist, 'r') as f:
@@ -63,10 +66,17 @@ def find(target_url, recursive=False, wordlist=None):
 
         # Properly encode the path
         encoded_path = quote(path, safe='/:?=&')
+        scheme_pattern = re.compile(r"^(https?://)")
 
-        # Ensure that the URL has a valid schema
-        if not urlparse(encoded_path).scheme:
-            encoded_path = "http://" + encoded_path  # Assuming HTTP, modify if needed
+        # Match the scheme in the URL
+        match = scheme_pattern.match(encoded_path)
+
+        if match:
+            scheme = match.group(1)
+            if scheme not in ("http://", "https://"):
+                print("Sorry, we support only http and https!")
+                sys.exit(1)
+
 
         try:
             response = requests.get(encoded_path)
