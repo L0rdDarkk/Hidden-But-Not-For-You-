@@ -19,7 +19,7 @@ Version 0.0.1 beta.
 ## Usage
 
 1. Ensure you have Python installed on your system.
-2. Install the required packages by running: `pip install requests beautifulsoup4`.
+2. Install the required packages by running: `pip install requests.txt`.
 3. Save the provided Python script to a file (e.g., `hidden.py`).
 4. Open a terminal or command prompt.
 5. Navigate to the directory containing the script.
